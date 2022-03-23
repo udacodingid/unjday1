@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.udacoding.unjday1">
    <application
-        android:label="unjday1"
+        android:label="UNJ Apps"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

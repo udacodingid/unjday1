@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unjday1/ui_screen/page_register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,94 +23,120 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const PageHomeUtama(),
+      //hilangkan debug
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+//ketik st --> stateless
+//stateless --> statis
+//statefull --> dinamis
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class PageHomeUtama extends StatelessWidget {
+  const PageHomeUtama({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      appBar: new AppBar(
+        title: new Text("UNJ Apps"),
+        leadingWidth: 0,
+        centerTitle: false,
+        // leading: new Container(),
       ),
+      //appBar : Properti widget
+      //AppBar : Widget
+      //child : bisa menampung 1 widget
+      //children : bisa menampung banyak widget (row, column, stack, listview)
+
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+          //main axis
+          //cross axis
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 10,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Image.asset(
+                'gambar/logo_unj.png',
+                fit: BoxFit.fill,
+                height: 150,
+              ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Selamat Datang di UNJ App',
+                style: TextStyle(
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 20),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(hintText: 'Input Username'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                obscureText: true, //ini biar teks nya bulat2
+                decoration: InputDecoration(hintText: 'Input Password'),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: () {},
+                child: Text(
+                  'Login',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                color: Colors.yellowAccent,
+                textColor: Colors.black,
+              ),
+            ),
+
+            //widget yang bisa di klik :
+            //button --> material button, flatbutton, iconbutton,
+
+            //selain dari button mau kita klik
+            //kita harus bungkus dg inkwell atau gesture detector
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: InkWell(
+                onTap: () {
+                  //pindah ke page register
+                  //navigation : Navigator
+                  //Pop : balikan (back) : dari class B ke class A
+                  //push : dari class A ke class B
+                  Navigator.push(context, MaterialPageRoute(builder: (context)
+                  => PageRegister()
+                  ));
+
+                },
+                child: Text(
+                  'Anda belum punya akun? Silahkan Register',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                ),
+              ),
+            )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
