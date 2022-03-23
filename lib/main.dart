@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unjday1/ui_screen/page_register.dart';
+import 'package:unjday1/ui_screen/page_splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.yellow,
       ),
-      home: const PageHomeUtama(),
+      home: const PageSplashScreen(),
       //hilangkan debug
       debugShowCheckedModeBanner: false,
     );
@@ -36,8 +37,17 @@ class MyApp extends StatelessWidget {
 //stateless --> statis
 //statefull --> dinamis
 
-class PageHomeUtama extends StatelessWidget {
+class PageHomeUtama extends StatefulWidget {
   const PageHomeUtama({Key? key}) : super(key: key);
+
+  @override
+  _PageHomeUtamaState createState() => _PageHomeUtamaState();
+}
+
+class _PageHomeUtamaState extends State<PageHomeUtama> {
+  //text controller
+  TextEditingController etUsername = new TextEditingController();
+  TextEditingController etPassword = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +95,14 @@ class PageHomeUtama extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                controller: etUsername,
                 decoration: InputDecoration(hintText: 'Input Username'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                controller: etPassword,
                 obscureText: true, //ini biar teks nya bulat2
                 decoration: InputDecoration(hintText: 'Input Password'),
               ),
@@ -99,7 +111,21 @@ class PageHomeUtama extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  //get data
+                  String nName = etUsername.text;
+                  String nPassword = etPassword.text;
+
+                  //cek login
+                  //username == rizki dan pass : 123123
+                  //bisa login
+                  if ((nName == "rizki") && (nPassword == "123123")) {
+                    //maka berhasil login
+                    print('Berhasil Login');
+                  } else {
+                    print('Username atau password salah');
+                  }
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -122,10 +148,8 @@ class PageHomeUtama extends StatelessWidget {
                   //navigation : Navigator
                   //Pop : balikan (back) : dari class B ke class A
                   //push : dari class A ke class B
-                  Navigator.push(context, MaterialPageRoute(builder: (context)
-                  => PageRegister()
-                  ));
-
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PageRegister()));
                 },
                 child: Text(
                   'Anda belum punya akun? Silahkan Register',
