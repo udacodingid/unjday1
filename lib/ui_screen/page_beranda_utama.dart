@@ -18,6 +18,47 @@ class _PageBerandaUtamaState extends State<PageBerandaUtama> {
       appBar: AppBar(
         title: Text('Beranda'),
         backgroundColor: Colors.yellowAccent,
+        automaticallyImplyLeading: false,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            Container(
+              color: Colors.deepOrange,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Image.asset('gambar/profile.png'),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, bottom: 8),
+                    child: Text(
+                      'Rizki Syaputra',
+                      style: TextStyle(fontSize: 11, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: (){},
+                      child: Text('My Profile', style: TextStyle(
+                          color: Colors.deepOrange
+                      ),),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
 
       body: Center(
