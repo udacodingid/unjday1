@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unjday1/ui_screen/page_beranda_utama.dart';
 import 'package:unjday1/ui_screen/page_register.dart';
 import 'package:unjday1/ui_screen/page_splash_screen.dart';
 
@@ -122,6 +123,10 @@ class _PageHomeUtamaState extends State<PageHomeUtama> {
                   if ((nName == "rizki") && (nPassword == "123123")) {
                     //maka berhasil login
                     print('Berhasil Login');
+                    //pindah ke page home
+                    Navigator.push(context, MaterialPageRoute(builder: (context)
+                      => PageBerandaUtama(nPass: nPassword, nUsername: nName)
+                    ));
                   } else {
                     print('Username atau password salah');
                   }
@@ -164,3 +169,11 @@ class _PageHomeUtamaState extends State<PageHomeUtama> {
     );
   }
 }
+
+//day 2
+//get data dari text form field
+//passing data --> ngelempar dari satu page ke page lain
+//page home untuk nampilin data
+//simple grid dan costum grid
+//page profile
+

@@ -14,7 +14,7 @@ class _PageSplashScreenState extends State<PageSplashScreen> {
 
   //method untuk timer
   nextPage()async{
-    var duration = Duration(seconds: 10);
+    var duration = Duration(seconds: 5);
     return Timer(
       duration, (){
       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)
